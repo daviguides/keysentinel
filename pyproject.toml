@@ -1,0 +1,43 @@
+[project]
+name = "keysentinel"
+version = "0.1.0"
+description = "Secure token management library for CLI tools, using two-layer encryption with local key and 1Password vault integration."
+authors = [
+  { name="Davi Guides", email="davi.guides@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "Topic :: Security",
+  "Topic :: Utilities",
+  "Intended Audience :: Developers",
+]
+
+dependencies = [
+  "cryptography>=42.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/daviguides/keysentinel"
+"Repository" = "https://github.com/daviguides/keysentinel"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["keysentinel"]
+
+[dependency-groups]
+dev = [
+  "ipdb>=0.13.13",
+  "ipykernel>=6.29.5",
+  "ipython>=8.36.0",
+  "pre-commit>=4.2.0",
+  "ruff>=0.1.14",
+]
