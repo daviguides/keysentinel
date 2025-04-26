@@ -20,7 +20,12 @@ classifiers = [
 
 dependencies = [
   "cryptography>=42.0.0",
+  "typer>=0.15.2",
 ]
+
+[project.scripts]
+keysentinel = "keysentinel.cli:app"
+ks = "keysentinel.cli:app"
 
 [project.urls]
 "Homepage" = "https://github.com/daviguides/keysentinel"

@@ -43,36 +43,46 @@ def find_existing_item(title: str, vault: str) -> str | None:
             return item.get("id")
     return None
 
-
-def upsert_encrypted_token(
-    token_plain: str,
+def upsert_encrypted_fields(
+    fields: dict[str, str],
     item_title: str,
     vault: str = DEFAULT_VAULT_NAME,
     key_path: str = DEFAULT_KEY_PATH,
 ) -> None:
-    """Encrypt and save or update a token in the vault."""
+    """Encrypt and save or update multiple fields in the vault."""
     key = generate_key(key_path)
-    encrypted_token = encrypt_token(token_plain, key)
+    encrypted_fields = []
+
+    dummy_value = encrypt_token("DUMMY_PASSWORD_DO_NOT_USE", key)
+    encrypted_fields.append({
+        "id": "password",
+        "type": "STRING",
+        "label": "Password",
+        "value": dummy_value,
+        "purpose": "PASSWORD",
+    })
+
+    for field_name, field_value in fields.items():
+        encrypted_value = encrypt_token(field_value, key)
+        encrypted_fields.append({
+            "id": field_name,
+            "type": "STRING",
+            "label": field_name,
+            "value": encrypted_value,
+        })
+
     existing_item_id = find_existing_item(item_title, vault)
 
     item_payload = {
         "title": item_title,
-        "fields": [
-            {
-                "id": "password",
-                "type": "STRING",
-                "purpose": "PASSWORD",
-                "label": "Encrypted Token",
-                "value": encrypted_token,
-            }
-        ],
+        "fields": encrypted_fields,
         "tags": ["cli-token"],
     }
 
     command = (
         ["op", "item", "edit", existing_item_id, "-", "--vault", vault]
-        if existing_item_id
-        else ["op", "item", "create", "--vault", vault, "--category", "Password", "-"]
+        if existing_item_id else
+        ["op", "item", "create", "--vault", vault, "--category", "Password", "-"]
     )
 
     try:
@@ -83,6 +93,4 @@ def upsert_encrypted_token(
             check=True,
         )
     except subprocess.CalledProcessError as e:
-        raise VaultOperationError(
-            "Failed to create or update item in 1Password."
-        ) from e
+        raise VaultOperationError("Failed to create or update item in 1Password.") from e
