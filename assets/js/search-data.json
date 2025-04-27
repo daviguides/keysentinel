@@ -1,0 +1,58 @@
+{"0": {
+    "doc": "KeySentinel Documentation",
+    "title": "KeySentinel Documentation",
+    "content": "# KeySentinel Documentation Welcome to the official documentation for **KeySentinel** — your minimalistic Zero Trust local token manager. ## Overview KeySentinel allows you to securely encrypt, store, retrieve, and manage sensitive credentials locally or via 1Password Vault integration, following modern security principles. - **Language**: Python - **Security Model**: Local symmetric encryption + vault integration - **Philosophy**: Minimal footprint, strong security, easy usage. ## Sections - [Installation](/installation.html) - [Usage Guide](/usage.html) - [Security Principles](/security.html) - [API Reference](reference/) --- [View on GitHub](https://github.com/daviguides/keysentinel) ",
+    "url": "/",
+    
+    "relUrl": "/"
+  },"1": {
+    "doc": "Installation",
+    "title": "Installation",
+    "content": "# Installation ## Requirements - Python 3.8 or higher - `op` (1Password CLI) installed and authenticated (if using 1Password vaults) ## Installing KeySentinel ```bash pip install keysentinel ``` or if you are developing locally: ```bash git clone https://github.com/daviguides/keysentinel.git cd keysentinel uv sync --all-extras ``` ",
+    "url": "/installation.html",
+    
+    "relUrl": "/installation.html"
+  },"2": {
+    "doc": "Decryption Module",
+    "title": "Decryption Module",
+    "content": "# Decryption Module Provides functions to: - Retrieve encrypted items from vault - Decrypt tokens locally - Load encryption keys ",
+    "url": "/reference/decryption.html",
+    
+    "relUrl": "/reference/decryption.html"
+  },"3": {
+    "doc": "Encryption Module",
+    "title": "Encryption Module",
+    "content": "# Encryption Module Provides functions to: - Generate/load a symmetric encryption key - Encrypt tokens - Save encrypted credentials to a vault ",
+    "url": "/reference/encryption.html",
+    
+    "relUrl": "/reference/encryption.html"
+  },"4": {
+    "doc": "Profiles Module",
+    "title": "Profiles Module",
+    "content": "# Profiles Module Predefined token profiles for common services: - AWS - GitHub - OpenAI - Azure ...and custom user profiles via `~/.keysentinel_profiles.json` ",
+    "url": "/reference/profiles.html",
+    
+    "relUrl": "/reference/profiles.html"
+  },"5": {
+    "doc": "Utils Module",
+    "title": "Utils Module",
+    "content": "# Utils Module Utilities for: - Secure clipboard copying - Auto-clearing sensitive values from memory - Masking secrets for safe display ",
+    "url": "/reference/utils.html",
+    
+    "relUrl": "/reference/utils.html"
+  },"6": {
+    "doc": "Security Philosophy",
+    "title": "Security Philosophy",
+    "content": "# Security Philosophy KeySentinel is based on **Zero Trust Principles**: - If it's **not encrypted**, it's **exposed**. - If it's **on disk**, it's **compromised**. **Features:** - Local symmetric encryption (Fernet) - Secure clipboard handling - Auto-clear memory after operations - No plaintext exports (blocked by design) > \"Defense is built through discipline, not convenience.\" ",
+    "url": "/security.html",
+    
+    "relUrl": "/security.html"
+  },"7": {
+    "doc": "Usage",
+    "title": "Usage",
+    "content": "# Usage ## Encrypting a Token ```bash keysentinel encrypt-token --title \"MyAPIKey\" --fields api_key ``` or use a predefined profile: ```bash keysentinel encrypt-token --title \"MyAWSKeys\" --profile aws ``` ## Retrieving a Token ```bash keysentinel get-token --title \"MyAPIKey\" ``` - `--copy`: Copy to clipboard temporarily - `--unsafe-output`: Show real credentials ",
+    "url": "/usage.html",
+    
+    "relUrl": "/usage.html"
+  }
+}
