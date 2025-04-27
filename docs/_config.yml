@@ -1,5 +1,5 @@
 title: KeySentinel
 description: Secure token management CLI.
-theme: just-the-docs
+theme: "just-the-docs"
 
 color_scheme: light
