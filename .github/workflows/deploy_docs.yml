@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Deploy KeySentinel Docs
 
 on:
   push:
@@ -9,19 +9,25 @@ permissions:
   contents: write
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Setup Ruby and install dependencies
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby and Jekyll
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
+          ruby-version: 3.2
           bundler-cache: true
 
-      - name: Build site
-        run: bundle exec jekyll build -d _site
+      - name: Install Jekyll and build site
+        working-directory: docs
+        run: |
+          gem install jekyll bundler
+          bundle install
+          bundle exec jekyll build -d ../_site
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
