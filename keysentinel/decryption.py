@@ -61,7 +61,7 @@ def retrieve_and_decrypt_fields(
     for field in fields_data:
         field_id = field.get("id")
         encrypted_value = field.get("value")
-        if field_id and encrypted_value and field_id != "password":  # ✅ Ignorar dummy
+        if field_id and encrypted_value and field_id != "password":
             try:
                 decrypted_value = decrypt_token(encrypted_value, key)
                 decrypted_fields[field_id] = decrypted_value

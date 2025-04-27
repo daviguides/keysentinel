@@ -1,4 +1,4 @@
-# KeySentinel 🔐
+KeySentinel 🔐
 
 <p align="center">
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/security-zero%20trust-blue"></a>
@@ -7,113 +7,174 @@
   <a href="http://daviguides.github.io/posts/link_to_post"><img src="https://img.shields.io/badge/read-architecture%20article-blueviolet"></a>
 </p>
 
-**KeySentinel** is a lightweight and secure token encryption library designed for CLI tools.
-It implements a two-layer security architecture to encrypt and store sensitive tokens safely, combining local encryption with 1Password vault integration.
+KeySentinel is a lightweight, secure token encryption library and CLI tool for managing sensitive credentials with strong Zero Trust principles.
 
-[Read the full article explaining the Two-Layer Security Architecture here](http://daviguides.github.io/posts/link_to_post)
+📖 Read the full article explaining the Two-Layer Security Architecture
 
----
+⸻
 
-## Features
+✨ Features
+ • 🔐 Two-layer token encryption: local symmetric key + vault storage
+ • 🚀 Developer-friendly CLI (keysentinel) with zero plaintext leakage
+ • 🔥 Predefined profiles for common APIs (AWS, GitHub, OpenAI, GCP, etc.)
+ • 🛡️ Extensible custom profiles via JSON
+ • 🧐 Zero Trust Local Environment Enforcement
+ • 🗋 Secure clipboard copy with automatic timeout cleaning
+ • ❌ Export to plaintext files (.env, .json) intentionally blocked for safety
 
-- Two-layer token encryption: local key + vault protection
-- Secure storage and retrieval of API keys, GitHub tokens, AWS credentials
-- Minimal exposure: no plaintext tokens on disk or in environment variables
-- Memory-only token decryption after vault access
-- Developer-friendly: simple usage with strong security guarantees
-- Fully compatible with 1Password CLI ("op")
-- Strong Zero-Trust Local Environment enforcement
+⸻
 
----
+🚀 Why KeySentinel?
 
-## Why KeySentinel?
+Most CLI tools expose credentials through .env files or unsecured memory spaces.
 
-Most CLI tools store tokens insecurely in plaintext files or environment variables.
-**KeySentinel** eliminates this risk by ensuring that your secrets remain encrypted at rest and are only decrypted in memory after biometric or secure vault access.
+KeySentinel breaks this insecure paradigm:
+ • No unencrypted secrets on disk.
+ • No unguarded outputs without user consent.
+ • Ephemeral secrets that self-destroy after a timeout.
+ • Clear warnings to educate developers about security risks.
 
-This approach significantly reduces the attack surface for local and remote threats while maintaining a seamless developer experience.
+“If it’s not encrypted, it’s exposed. If it’s on disk, it’s compromised.” — The Zen of Zero Trust
 
-**KeySentinel never stores sensitive information as plaintext on disk.**
-Decrypted tokens are ephemeral — they live only in memory for the current execution context.
+⸻
 
-> **Zero Trust Local Environment**: No .env files, no plaintext caches, no filesystem residue.
+⚡ Quick Usage
 
----
+Encrypt and store a token via Python
 
-## Usage
+from keysentinel import upsert_encrypted_fields
 
-### Encrypt and store a token
-
-```python
-from keysentinel import upsert_encrypted_token
-
-upsert_encrypted_token(
-    token_plain="ghp_xxx123",
-    item_title="GitHub CLI Token Enc",
+upsert_encrypted_fields(
+    fields={"github_token": "ghp_xxx123"},
+    item_title="GitHub CLI Token",
 )
-```
 
-### Retrieve and decrypt a token
+Retrieve and decrypt a token via Python
 
-```python
-from keysentinel import retrieve_and_decrypt_token
+from keysentinel import retrieve_and_decrypt_fields
 
-token = retrieve_and_decrypt_token(
-    item_name="GitHub CLI Token Enc",
-)
-print(token)
-```
+fields = retrieve_and_decrypt_fields("GitHub CLI Token")
+print(fields["github_token"])
 
-### Using the CLI
+Using the CLI (Recommended)
 
-```bash
-# Encrypt and store fields securely (values prompted securely, not via command line arguments)
+# Encrypt and store fields securely (values prompted securely)
+
 keysentinel encrypt-token --title "AWS CLI Credentials" --fields aws_access_key_id --fields aws_secret_access_key
 
+# Or use a predefined profile
+
+keysentinel encrypt-token --title "GitHub Token" --profile github
+
 # Retrieve and decrypt fields
+
 keysentinel get-token --title "AWS CLI Credentials"
-```
 
-> ⚠️ Sensitive credentials will be decrypted and displayed in your terminal. Do NOT store them in plaintext files.
+⚠️ Credentials will be cleared from your terminal and memory automatically after a short timeout.
 
----
+⸻
 
-## Security Philosophy
+🛡️ Security Model
 
-- **Two-Layer Encryption**: Local symmetric key + vault protection.
-- **No Plaintext Persistence**: Decrypted data never touches the disk.
-- **Memory-Only Decryption**: Secrets exist only temporarily in memory.
-- **Vault as Transport, Not Storage**: Vault stores already-encrypted blobs.
-- **User Awareness**: Warnings are shown whenever decrypted material is displayed.
+Aspect Behavior
+Local Encryption AES256/Fernet with a user-local symmetric key
+Vault Transport Secrets stored inside 1Password CLI (“op”)
+Decryption Memory-only, no disk writes
+Export Blocked by default (no .env, no .json)
+User Awareness Visual warnings on decrypted output
+Secret Lifecycle Timeout auto-clears memory and screen
 
-**This strict model enforces Zero Trust even against local machine compromises.**
+⸻
 
----
+📂 Token Profiles (Built-in)
 
-## Roadmap
+KeySentinel supports predefined profiles to simplify common API credential handling:
 
-- [x] Support simple token encryption and storage
-- [x] Secure multi-field encryption (AWS credentials, etc.)
-- [x] Native CLI (Typer-powered)
-- [ ] Multi-vault and multi-backend support (e.g., Bitwarden)
-- [ ] Advanced token types handling (OAuth, API Secrets)
-- [ ] Profile templates for common token types (GitHub, AWS, GCP, etc.)
+Profile Fields
+aws aws_access_key_id, aws_secret_access_key
+github github_token
+gcp gcp_client_email, gcp_private_key, gcp_project_id
+openai openai_api_key
+azure azure_client_id, azure_client_secret, azure_tenant_id, azure_subscription_id
+slack slack_token
+and many others… (30+ profiles supported!)
 
----
+You can list and use these profiles by passing --profile <profile_name>.
 
-## License
+⸻
+
+🛠️ Extend with Custom Profiles
+
+You can extend KeySentinel by creating a file at:
+
+~/.keysentinel_profiles.json
+
+Example content:
+
+{
+  "huggingface": {
+    "description": "Hugging Face API Token",
+    "fields": ["hf_token"]
+  },
+  "figma": {
+    "description": "Figma Personal Access Token",
+    "fields": ["figma_token"]
+  }
+}
+
+When running encrypt-token, your custom profiles will be automatically available!
+
+⸻
+
+❌ Why Export is Blocked
+
+KeySentinel blocks plaintext exports (--export-env, --export-json) intentionally.
+
+Attempting to use them shows this educational warning:
+
+⚠️  Do NOT store or copy them into plaintext files or version control.
+
+"If it's not encrypted, it's exposed.
+If it's on disk, it's compromised."
+from "The Zen of Zero Trust"
+
+For more info:
+
+- run: import zero_trust
+- read: <https://daviguides.github.io/articles/devsecops/2025/04/25/zero-trust-manifest.html>
+
+⸻
+
+📜 Zero Trust Manifest
+
+You can load the philosophy inside Python:
+
+import zero_trust
+
+Or read it online:
+👉 Zero Trust Local Manifesto
+
+⸻
+
+🛣️ Roadmap
+ • Secure CLI operations
+ • Custom and extensible token profiles
+ • Memory-timeout auto-clear after exposure
+ • Multi-vault support (future)
+ • Bitwarden CLI integration (future)
+
+⸻
+
+⚖️ License
 
 MIT License
 
----
+⸻
 
-## Author
+👨‍💻 Author
 
-Davi Luiz Guides
-[Portfolio](http://daviguides.github.io)
+Built with ❤️ by Davi Luiz Guides
 
----
+⸻
 
-**Secure your CLI workflows with KeySentinel.**
-
-⚡️ Encrypt, Vault, Protect. 🔐
+KeySentinel: Secure your tokens, secure your workflows. 🔐
