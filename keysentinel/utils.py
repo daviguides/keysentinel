@@ -1,18 +1,6 @@
 import subprocess
 import sys
-import random
-import string
-
-try:
-    import pyperclip
-except ImportError:
-    pyperclip = None
-
-
-def _generate_random_trash(length: int = 100) -> str:
-    """Generate a random string to overwrite clipboard."""
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
-
+import pyperclip
 
 def clear_clipboard_after_timeout(timeout: int = 30) -> None:
     """Spawn a detached subprocess to clear clipboard after timeout with random trash overwrite."""
@@ -60,11 +48,6 @@ except Exception:
 
 def safe_copy_to_clipboard(text: str, timeout: int = 30) -> None:
     """Copy text to clipboard and spawn secure cleaning after timeout."""
-    if pyperclip is None:
-        raise RuntimeError(
-            "Clipboard copy requires 'pyperclip' package. Install it first."
-        )
-
     pyperclip.copy(text)
     clear_clipboard_after_timeout(timeout)
 

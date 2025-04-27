@@ -42,10 +42,13 @@ packages = ["keysentinel", "zero_trust"]
 [dependency-groups]
 dev = [
   "build>=1.2.2.post1",
+  "coverage>=7.8.0",
   "ipdb>=0.13.13",
   "ipykernel>=6.29.5",
   "ipython>=8.36.0",
   "pre-commit>=4.2.0",
+  "pytest>=8.3.5",
+  "pytest-cov>=6.1.1",
   "ruff>=0.1.14",
   "twine>=6.1.0",
 ]

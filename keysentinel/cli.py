@@ -61,7 +61,6 @@ def get_token_command(
 
     if export_env or export_json:
         _handle_export_blocked()
-        return
 
     fields = retrieve_and_decrypt_fields(title)
     if not fields:
