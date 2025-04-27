@@ -28,7 +28,14 @@
 
 ## 🛡 Security
 
-- Enforced Zero Trust Local Environment principles.
+- [x] Two-Layer Encryption (local key + vault transport)
+- [x] No Plaintext Persistence (secrets never touch disk)
+- [x] Memory-Only Decryption (secrets exist only during process lifetime)
+- [x] Vault as Transport (1Password stores encrypted blobs, not raw secrets)
+- [x] Explicit User Awareness (security warnings on output)
+- [x] Zero Trust Local Machine (local environment assumed unsafe)
+- [x] Secrets cleared automatically from memory and screen after timeout
+- [x] Blocked plaintext export (.env, .json)
 
 ## 📢 Notes
 
