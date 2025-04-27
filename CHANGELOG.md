@@ -2,7 +2,45 @@
 
 # Changelog
 
-## [Unreleased]
+## [v0.2.0] - 2025-04-27
+
+### Added
+
+- Full **unit test suite** for encryption, decryption, profiles, utils, and CLI.
+- **Pytest coverage integration** with `pytest.ini` and updated `Makefile` commands for:
+  - Testing
+  - Coverage reports
+  - Linting and formatting.
+- **New CLI behaviors**:
+  - Blocked export to `.env` and `.json` explicitly with proper coverage.
+  - Secure masked output and unsafe output logic fully tested.
+- **Fake clipboard** testing for timeout and clearing clipboard securely.
+- **Updated `Makefile`** to include:
+  - `test`, `coverage-html`, `coverage-term`, `lint`, `format`, `check-format`, `pre-commit-install`, `pre-commit-test`, `clean`
+- **Updated README badges** and added full test coverage explanation.
+
+### Changed
+
+- **Refactored `tests/` structure** to be modular and separated by concern.
+- **Corrected coverage handling** for export blocking paths.
+- **Removed unnecessary `return` after export block** in CLI.
+- **Minor internal adjustments** to tests for robustness.
+
+### Fixed
+
+- CLI tests now properly mock functions (fixing fixture errors).
+- Corrected CLI safe masked output test to match actual output.
+- Full 100% coverage for `utils.py`, `profiles.py`, `encryption.py`, `decryption.py`.
+
+---
+
+# 🛡 Zero Trust Local Enforcement: Strengthened Further
+
+> "If it's not encrypted, it's exposed. If it's on disk, it's compromised."
+
+---
+
+## [v0.1.0] - 2025-04-25
 
 ### Added
 
@@ -34,18 +72,19 @@
 
 ---
 
-# 🛠 [Next]
+# 🛠 [Next Planned Improvements]
 
-- Multi-vault support (e.g., Bitwarden)
+- Multi-vault support (e.g., Bitwarden integration)
 - OAuth and token auto-refresh profiles
 - Improved error handling and diagnostics
+- Command aliases for faster CLI usage
 
 ---
 
 # 🗓 Versioning
 
-- Current: Development (Unreleased)
-- Next planned release: `v0.2.0`
+- Current: `v0.2.0`
+- Previous: `v0.1.0`
 
 ---
 
