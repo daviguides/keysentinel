@@ -155,3 +155,17 @@ Temporary Items
 *.zwc
 config.conf
 uv.lock
+
+# Arquivos e pastas gerados automaticamente
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Dependências Ruby
+Gemfile.lock
+vendor/
+
+# Outros arquivos temporários
+.DS_Store
+*.log
