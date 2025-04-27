@@ -1,3 +1,10 @@
+---
+title: Usage
+nav_order: 3
+description: How to use KeySentinel CLI and library.
+permalink: /usage/
+---
+
 # Usage
 
 ## Encrypting a Token

@@ -1,3 +1,10 @@
+---
+title: Zero Trust Model
+nav_order: 4
+description: Understand the Zero Trust principles applied by KeySentinel.
+permalink: /security/
+---
+
 # Security Philosophy
 
 KeySentinel is based on **Zero Trust Principles**:

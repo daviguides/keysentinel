@@ -1,3 +1,11 @@
+---
+title: Profiles
+nav_order: 3
+parent: Reference
+description: Manage predefined and custom token profiles.
+permalink: /reference/profiles/
+---
+
 # Profiles Module
 
 Predefined token profiles for common services:

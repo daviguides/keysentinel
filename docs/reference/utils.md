@@ -1,3 +1,11 @@
+---
+title: Utils
+nav_order: 4
+parent: Reference
+description: Clipboard management and masking utilities.
+permalink: /reference/utils/
+---
+
 # Utils Module
 
 Utilities for:

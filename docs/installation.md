@@ -1,3 +1,10 @@
+---
+title: Installation
+nav_order: 2
+description: How to install KeySentinel CLI and library.
+permalink: /installation/
+---
+
 # Installation
 
 ## Requirements

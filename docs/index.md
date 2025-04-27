@@ -1,3 +1,10 @@
+---
+title: Home
+nav_order: 1
+description: Welcome to KeySentinel documentation.
+permalink: /
+---
+
 # KeySentinel Documentation
 
 Welcome to the official documentation for **KeySentinel** — your minimalistic Zero Trust local token manager.
