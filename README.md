@@ -4,12 +4,12 @@ KeySentinel 🔐
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/security-zero%20trust-blue"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
   <a href="http://daviguides.github.io"><img src="https://img.shields.io/badge/built%20with-%E2%9D%A4%EF%B8%8F%20by%20Davi%20Guides-orange"></a>
-  <a href="http://daviguides.github.io/posts/link_to_post"><img src="https://img.shields.io/badge/read-architecture%20article-blueviolet"></a>
+  <a href="https://daviguides.github.io/articles/devsecops/2025/04/25/zero-trust-manifest.html"><img src="https://img.shields.io/badge/read-architecture%20article-blueviolet"></a>
 </p>
 
 KeySentinel is a lightweight, secure token encryption library and CLI tool for managing sensitive credentials with strong Zero Trust principles.
 
-📖 Read the full article explaining the Two-Layer Security Architecture
+📖 [Read the full article explaining the Two-Layer Security Architecture here](https://daviguides.github.io/articles/devsecops/2025/04/25/zero-trust-manifest.html)
 
 ⸻
 
@@ -152,7 +152,14 @@ You can load the philosophy inside Python:
 import zero_trust
 
 Or read it online:
-👉 Zero Trust Local Manifesto
+👉 [Zero Trust Local Environment Manifesto](https://daviguides.github.io/articles/devsecops/2025/04/25/zero-trust-manifest.html)
+
+---
+
+## 🔗 Related Reading
+
+- [Zero Trust Architecture (NIST)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
+- [Two-Layer Security Architecture for Token Management](https://daviguides.github.io/articles/devsecops/2025/04/24/bulding-secure-cli-python.html)
 
 ⸻
 
