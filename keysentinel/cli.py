@@ -1,3 +1,9 @@
+"""KeySentinel CLI for secure token management.
+
+This CLI allows encrypting, storing, retrieving, and safely displaying
+secrets through 1Password vaults, following Zero Trust principles.
+"""
+
 import time
 import typer
 from typing import List
@@ -14,17 +20,24 @@ app = typer.Typer(help="KeySentinel CLI - Secure Token Management")
 
 @app.command("encrypt-token")
 def encrypt_token_command(
-    title: str = typer.Option(
-        ..., help="Title of the item in the vault."
-    ),
+    title: str = typer.Option(..., help="Title of the item in the vault."),
     fields: List[str] = typer.Option(
-        None, help="Fields to encrypt (only keys, values prompted securely)."
+        None, help="Fields to encrypt (only field names, values will be prompted securely)."
     ),
     profile: str = typer.Option(
-        None, help="Use predefined profile (aws, github, openai etc)."
+        None, help="Use a predefined profile (e.g., aws, github, openai)."
     ),
 ):
-    """Encrypt and save one or multiple fields into the vault."""
+    """Encrypt and save one or multiple fields into the vault.
+
+    Args:
+        title (str): Title of the item in the vault.
+        fields (List[str], optional): List of fields to encrypt manually.
+        profile (str, optional): Predefined profile name to use preset fields.
+
+    Raises:
+        typer.Exit: If argument validation fails or encryption fails.
+    """
     if not fields and not profile:
         typer.secho("❌ You must provide either --fields or --profile.", fg=typer.colors.RED, bold=True)
         raise typer.Exit(code=1)
@@ -34,7 +47,7 @@ def encrypt_token_command(
         raise typer.Exit(code=1)
 
     if profile:
-        profile_data = profile_data = get_token_profiles().get(profile.lower())
+        profile_data = get_token_profiles().get(profile.lower())
         if not profile_data:
             typer.secho(f"❌ Profile '{profile}' not found.", fg=typer.colors.RED, bold=True)
             raise typer.Exit(code=1)
@@ -46,7 +59,8 @@ def encrypt_token_command(
         field_dict[field_key] = value
 
     upsert_encrypted_fields(fields=field_dict, item_title=title)
-    typer.echo(f"Encrypted and saved fields under title '{title}'.")
+    typer.echo(f"🔒 Encrypted and saved fields under title '{title}'.")
+
 
 @app.command("get-token")
 def get_token_command(
@@ -57,8 +71,19 @@ def get_token_command(
     export_json: bool = typer.Option(False, help="(Blocked) Educational only - JSON export not allowed."),
     timeout: int = typer.Option(5, help="Timeout in seconds to clear credentials from memory."),
 ):
-    """Retrieve and decrypt all fields from the vault."""
+    """Retrieve and decrypt all fields from the vault securely.
 
+    Args:
+        title (str): Title of the item to retrieve.
+        copy (bool, optional): Whether to copy output to clipboard.
+        unsafe_output (bool, optional): Whether to display real secrets (discouraged).
+        export_env (bool, optional): Blocked option for .env export.
+        export_json (bool, optional): Blocked option for JSON export.
+        timeout (int, optional): Timeout to clear memory or clipboard. Defaults to 5 seconds.
+
+    Raises:
+        typer.Exit: If retrieval fails or export is blocked.
+    """
     if export_env or export_json:
         _handle_export_blocked()
 
@@ -67,9 +92,7 @@ def get_token_command(
         typer.echo(f"No fields found for item '{title}'.")
         raise typer.Exit(code=1)
 
-
     final_output = _generate_output_lines(fields, unsafe_output or copy)
-
     lines_printed = len(fields)
 
     if not copy:
@@ -99,7 +122,11 @@ def get_token_command(
 # --- Internal helpers ---
 
 def _print_disclaimer(unsafe_output: bool) -> None:
-    """Print security disclaimer based on output mode."""
+    """Print security warning based on output safety level.
+
+    Args:
+        unsafe_output (bool): Whether secrets are displayed unmasked.
+    """
     if unsafe_output:
         typer.secho(
             "\n⚠️  Sensitive credentials decrypted and displayed below.\n"
@@ -116,10 +143,15 @@ def _print_disclaimer(unsafe_output: bool) -> None:
             bold=True,
         )
 
+
 def _handle_export_blocked() -> None:
-    """Handle blocked export options (env/json)."""
+    """Display a blocked export warning and exit.
+
+    Raises:
+        typer.Exit: Always exits after displaying warning.
+    """
     typer.secho(
-        "\n⚠️  Do NOT store or copy them into plaintext files or version control.\n\n"
+        "\n⚠️  Do NOT store or copy secrets into plaintext files or version control.\n\n"
         "\"If it's not encrypted, it's exposed.\n"
         "If it's on disk, it's compromised.\"\n"
         "from \"The Zen of Zero Trust\"\n\n"
@@ -131,8 +163,17 @@ def _handle_export_blocked() -> None:
     )
     raise typer.Exit()
 
+
 def _generate_output_lines(fields: dict, unsafe_output: bool) -> str:
-    """Generate output text with either masked or real secrets."""
+    """Generate formatted output from decrypted fields.
+
+    Args:
+        fields (dict): Dictionary of field names and values.
+        unsafe_output (bool): Whether to show real secrets or masked.
+
+    Returns:
+        str: Formatted string ready to display or copy.
+    """
     output_lines = []
     for key, value in fields.items():
         if unsafe_output:
@@ -142,13 +183,17 @@ def _generate_output_lines(fields: dict, unsafe_output: bool) -> str:
             output_lines.append(f"{key}={masked_value}")
     return "\n".join(output_lines)
 
+
 def _delayed_clear_memory(timeout: int, lines_to_clear: int) -> None:
-    """Wait timeout and clear the sensitive output from terminal."""
+    """Clear sensitive information from the terminal after a delay.
+
+    Args:
+        timeout (int): Timeout in seconds before clearing.
+        lines_to_clear (int): Number of lines to clear from screen.
+    """
     time.sleep(timeout)
 
     clear_lines = lines_to_clear + 5
-
-    # Move cursor up and clear each line
     for _ in range(clear_lines):
         print("\033[F" + " " * 100 + "\r", end="")
 

@@ -1,9 +1,35 @@
+"""Utility functions for clipboard handling and secret masking.
+
+This module provides secure clipboard management with auto-clear
+features and simple masking utilities for sensitive values.
+"""
+
 import subprocess
 import sys
 import pyperclip
 
+
+def safe_copy_to_clipboard(text: str, timeout: int = 30) -> None:
+    """Copy text to clipboard securely and clear it after a timeout.
+
+    Args:
+        text (str): The text to copy to the clipboard.
+        timeout (int, optional): Timeout in seconds before clearing. Defaults to 30 seconds.
+    """
+    pyperclip.copy(text)
+    clear_clipboard_after_timeout(timeout)
+
+
 def clear_clipboard_after_timeout(timeout: int = 30) -> None:
-    """Spawn a detached subprocess to clear clipboard after timeout with random trash overwrite."""
+    """Spawn a detached subprocess to overwrite and clear the clipboard after a timeout.
+
+    Args:
+        timeout (int, optional): Time to wait before clearing the clipboard, in seconds. Defaults to 30 seconds.
+
+    Notes:
+        This function works across macOS, Windows, and Linux platforms,
+        using a background Python process to avoid blocking the main process.
+    """
     subprocess.Popen(
         [sys.executable, "-c", f"""
 import time
@@ -46,14 +72,15 @@ except Exception:
     )
 
 
-def safe_copy_to_clipboard(text: str, timeout: int = 30) -> None:
-    """Copy text to clipboard and spawn secure cleaning after timeout."""
-    pyperclip.copy(text)
-    clear_clipboard_after_timeout(timeout)
-
-
 def mask_secret_value(value: str) -> str:
-    """Mask a secret value, showing only beginning and end."""
+    """Mask a secret value for safe display.
+
+    Args:
+        value (str): The secret value to mask.
+
+    Returns:
+        str: A masked version showing only the first and last 4 characters, or a generic mask if too short.
+    """
     if len(value) > 8:
         return value[:4] + "..." + value[-4:]
     return "***masked***"

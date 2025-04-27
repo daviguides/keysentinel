@@ -1,5 +1,14 @@
+"""Profile management for predefined and custom token templates.
+
+This module defines default token profiles for popular services
+(e.g., AWS, GitHub, OpenAI) and allows loading user-defined custom
+profiles from a local JSON file.
+"""
+
 import json
 import os
+
+# --- Default Token Profiles ---
 
 TOKEN_PROFILES = {
     "aws": {
@@ -124,13 +133,20 @@ TOKEN_PROFILES = {
     },
 }
 
-# --- Helper functions ---
-
+# Path to load custom profiles from user environment.
 DEFAULT_CUSTOM_PROFILES_PATH = os.getenv("KEYSENTINEL_CUSTOM_PROFILES_PATH", "~/.keysentinel_profiles.json")
 
 
 def load_custom_profiles_from_json(filepath: str | None = None) -> dict:
-    """Load custom profiles from a JSON file."""
+    """Load custom token profiles from a local JSON file.
+
+    Args:
+        filepath (str | None): Path to a custom profiles JSON file.
+            Defaults to `DEFAULT_CUSTOM_PROFILES_PATH`.
+
+    Returns:
+        dict: Dictionary with custom profile definitions, or an empty dict if not found or invalid.
+    """
     if filepath is None:
         filepath = DEFAULT_CUSTOM_PROFILES_PATH
     filepath = os.path.expanduser(filepath)
@@ -146,7 +162,15 @@ def load_custom_profiles_from_json(filepath: str | None = None) -> dict:
 
 
 def get_token_profiles(custom_profiles: dict | None = None) -> dict[str, dict]:
-    """Return merged default and custom token profiles."""
+    """Return the combined dictionary of default and custom token profiles.
+
+    Args:
+        custom_profiles (dict | None): Optional dictionary of custom profiles
+            to merge with the defaults. If None, attempts to load from JSON file.
+
+    Returns:
+        dict[str, dict]: Merged dictionary of token profiles.
+    """
     profiles = TOKEN_PROFILES.copy()
 
     if custom_profiles is None:
@@ -158,7 +182,7 @@ def get_token_profiles(custom_profiles: dict | None = None) -> dict[str, dict]:
     return profiles
 
 
-# --- Example (for doc purposes) ---
+# --- Example structure for documentation purposes ---
 
 EXAMPLE_CUSTOM_PROFILES_JSON = """
 {
@@ -173,4 +197,4 @@ EXAMPLE_CUSTOM_PROFILES_JSON = """
 }
 """
 
-# Users can create a file ~/.keysentinel_profiles.json with this structure to auto-extend profiles!
+# Users can create a file ~/.keysentinel_profiles.json with this structure to extend profiles automatically.
