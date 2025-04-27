@@ -1,41 +1,66 @@
-# CONTRIBUTING.md
-
 # 🤝 Contributing to KeySentinel
 
-First off, thank you for taking the time to contribute!
+Thank you for considering contributing to KeySentinel!
 
-This project enforces **strict Zero Trust Local Environment** principles.  
-All contributions must respect and strengthen the security model.
+KeySentinel enforces a strict **Zero Trust Local Environment** model.
+All contributions must **preserve**, **strengthen**, and **respect** this security foundation.
 
 ---
 
 ## 🚀 How to Contribute
 
-- Fork the repository
-- Create your feature branch (`git checkout -b feature/awesome-feature`)
-- Commit your changes (`git commit -m "feat: add awesome feature"`)
-- Push to the branch (`git push origin feature/awesome-feature`)
-- Open a Pull Request with a clear description
+- Fork this repository.
+- Create a feature branch:
+
+  ```bash
+  git checkout -b feature/your-feature-name
+  ```
+
+- Make your changes following the contribution guidelines.
+- Commit clearly:
+
+  ```bash
+  git commit -m "feat: brief description of the change"
+  ```
+
+- Push your branch:
+
+  ```bash
+  git push origin feature/your-feature-name
+  ```
+
+- Open a Pull Request (PR) with a clear and concise description of your changes.
 
 ---
 
-## 📋 Pull Request Requirements
+## 📋 Pull Request Guidelines
 
 - Focus on **security**, **clarity**, and **minimalism**.
-- Do not introduce plaintext persistence or insecure practices.
-- Ensure new features maintain ephemeral secret handling.
-- Update documentation if you introduce new CLI options or modules.
-- Write clean, type-annotated Python code.
-- Pass linting and basic testing (`pre-commit` friendly style).
+- **Never** introduce plaintext persistence or weaken ephemeral secret handling.
+- Maintain **ephemeral** (temporary) treatment of sensitive data.
+- Ensure **full type hints** in Python code.
+- Write **Google-style** docstrings for all public modules, functions, and classes.
+- Update or create documentation if needed (docs/ folder and CLI help).
+- Ensure tests pass:
+
+  ```bash
+  make test
+  ```
+
+- Run pre-commit hooks:
+
+  ```bash
+  make pre-commit-test
+  ```
 
 ---
 
 ## 🛡️ Code of Conduct
 
-- Respectful communication only.
-- Collaboration over confrontation.
-- Security and privacy above all.
+- Communicate respectfully and constructively.
+- Prefer collaboration over confrontation.
+- Security and privacy come **first** in every decision.
 
 ---
 
-Thank you for making KeySentinel even more secure and impactful! 🔥
+Thank you for helping make KeySentinel even more secure and impactful! 🔥

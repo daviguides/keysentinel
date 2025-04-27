@@ -5,6 +5,9 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
   <a href="http://daviguides.github.io"><img src="https://img.shields.io/badge/built%20with-%E2%9D%A4%EF%B8%8F%20by%20Davi%20Guides-orange"></a>
   <a href="https://daviguides.github.io/articles/devsecops/2025/04/25/zero-trust-manifest.html"><img src="https://img.shields.io/badge/read-architecture%20article-blueviolet"></a>
+  <a href="https://daviguides.github.io/keysentinel/"><img src="https://img.shields.io/badge/docs-online-blue"></a>
+  <img src="https://img.shields.io/badge/tests-passing-brightgreen">
+  <img src="https://img.shields.io/badge/coverage-100%25-brightgreen">
 </p>
 
 KeySentinel is a lightweight, secure token encryption library and CLI tool for managing sensitive credentials with strong Zero Trust principles.
