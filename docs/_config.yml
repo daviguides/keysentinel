@@ -4,26 +4,3 @@ remote_theme: just-the-docs/just-the-docs
 
 color_scheme: light
 baseurl: "/keysentinel"
-
-plugins:
-  - jekyll-remote-theme
-
-nav:
-  - title: "Home"
-    url: "/"
-  - title: "Installation"
-    url: "/installation"
-  - title: "Usage"
-    url: "/usage"
-  - title: "Security"
-    url: "/security"
-  - title: "Reference"
-    children:
-      - title: "Encryption"
-        url: "/reference/encryption"
-      - title: "Decryption"
-        url: "/reference/decryption"
-      - title: "Profiles"
-        url: "/reference/profiles"
-      - title: "Utils"
-        url: "/reference/utils"

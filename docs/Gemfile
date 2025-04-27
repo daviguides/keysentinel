@@ -1,12 +1,3 @@
 source "https://rubygems.org"
 
-gem "jekyll"
-gem "jekyll-remote-theme"
-gem "just-the-docs"
-gem "base64"
-gem "bigdecimal"
-gem "kramdown-parser-gfm"
-
-group :jekyll_plugins do
-  gem "jekyll-remote-theme"
-end
+gem "github-pages", group: :jekyll_plugins
