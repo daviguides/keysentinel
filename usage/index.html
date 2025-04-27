@@ -1,0 +1,21 @@
+<h1 id="usage">Usage</h1>
+
+<h2 id="encrypting-a-token">Encrypting a Token</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keysentinel encrypt-token <span class="nt">--title</span> <span class="s2">"MyAPIKey"</span> <span class="nt">--fields</span> api_key
+</code></pre></div></div>
+
+<p>or use a predefined profile:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keysentinel encrypt-token <span class="nt">--title</span> <span class="s2">"MyAWSKeys"</span> <span class="nt">--profile</span> aws
+</code></pre></div></div>
+
+<h2 id="retrieving-a-token">Retrieving a Token</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keysentinel get-token <span class="nt">--title</span> <span class="s2">"MyAPIKey"</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--copy</code>: Copy to clipboard temporarily</li>
+  <li><code class="language-plaintext highlighter-rouge">--unsafe-output</code>: Show real credentials</li>
+</ul>
