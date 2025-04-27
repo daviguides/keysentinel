@@ -1,3 +1,5 @@
-title: KeySentinel Documentation
-theme: jekyll-theme-minimal
-description: Secure local token manager following Zero Trust
+title: KeySentinel
+description: Secure token management CLI.
+theme: just-the-docs
+
+color_scheme: light
