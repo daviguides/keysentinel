@@ -1,10 +1,8 @@
 [project]
 name = "keysentinel"
-version = "0.2.4"
+version = "0.2.5"
 description = "Secure token management library for CLI tools, using two-layer encryption with local key and 1Password vault integration."
-authors = [
-  { name="Davi Guides", email="davi.guides@gmail.com" }
-]
+authors = [{ name = "Davi Guides", email = "davi.guides@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
@@ -18,11 +16,7 @@ classifiers = [
   "Intended Audience :: Developers",
 ]
 
-dependencies = [
-  "cryptography>=42.0.0",
-  "pyperclip>=1.9.0",
-  "typer>=0.15.2",
-]
+dependencies = ["cryptography>=42.0.0", "pyperclip>=1.9.0", "typer>=0.15.2"]
 
 [project.scripts]
 keysentinel = "keysentinel.cli:app"
