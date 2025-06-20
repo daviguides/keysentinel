@@ -66,6 +66,7 @@ KeySentinel strictly avoids:
 
 ## 🔗 Related Reading
 
+- [Zero Trust Architecture (NIST)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
 - [Zero Trust Local Environment Manifesto](https://daviguides.github.io/articles/devsecops/2025/04/25/zero-trust-manifest.html)
 - [Two-Layer Security Architecture for Token Management](https://daviguides.github.io/articles/devsecops/2025/04/24/bulding-secure-cli-python.html)
 

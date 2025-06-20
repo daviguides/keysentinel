@@ -169,3 +169,4 @@ vendor/
 # Outros arquivos temporários
 .DS_Store
 *.log
+_/

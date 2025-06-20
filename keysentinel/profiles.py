@@ -29,7 +29,12 @@ TOKEN_PROFILES = {
     },
     "azure": {
         "description": "Azure Service Principal Credentials",
-        "fields": ["azure_client_id", "azure_client_secret", "azure_tenant_id", "azure_subscription_id"],
+        "fields": [
+            "azure_client_id",
+            "azure_client_secret",
+            "azure_tenant_id",
+            "azure_subscription_id",
+        ],
     },
     "gcp": {
         "description": "Google Cloud Platform Service Account",
@@ -89,7 +94,11 @@ TOKEN_PROFILES = {
     },
     "firebase": {
         "description": "Firebase Admin SDK Credentials",
-        "fields": ["firebase_project_id", "firebase_private_key", "firebase_client_email"],
+        "fields": [
+            "firebase_project_id",
+            "firebase_private_key",
+            "firebase_client_email",
+        ],
     },
     "notion": {
         "description": "Notion Integration Secret",
@@ -131,10 +140,16 @@ TOKEN_PROFILES = {
         "description": "Supabase API Credentials",
         "fields": ["supabase_url", "supabase_anon_key", "supabase_service_role_key"],
     },
+    "huggingface": {
+        "description": "Hugging Face API Token",
+        "fields": ["hf_token"],
+    },
 }
 
 # Path to load custom profiles from user environment.
-DEFAULT_CUSTOM_PROFILES_PATH = os.getenv("KEYSENTINEL_CUSTOM_PROFILES_PATH", "~/.keysentinel_profiles.json")
+DEFAULT_CUSTOM_PROFILES_PATH = os.getenv(
+    "KEYSENTINEL_CUSTOM_PROFILES_PATH", "~/.keysentinel_profiles.json"
+)
 
 
 def load_custom_profiles_from_json(filepath: str | None = None) -> dict:
