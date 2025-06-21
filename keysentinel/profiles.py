@@ -38,7 +38,19 @@ TOKEN_PROFILES = {
     },
     "gcp": {
         "description": "Google Cloud Platform Service Account",
-        "fields": ["gcp_client_email", "gcp_private_key", "gcp_project_id"],
+        "fields": [
+            "gcp_client_email",
+            "gcp_private_key",
+            "gcp_project_id",
+        ],
+    },
+    "google_calendar_oauth": {
+        "description": "Google Calendar OAuth Client for Local Script",
+        "fields": [
+            "gcal_client_id",
+            "gcal_client_secret",
+            "gcal_project_id",
+        ],
     },
     "digitalocean": {
         "description": "DigitalOcean API Token",

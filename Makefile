@@ -53,3 +53,13 @@ coverage-term:
 # Clean up build artifacts, cache files, and test outputs
 clean:
 	rm -rf build dist *.egg-info htmlcov .pytest_cache .coverage
+
+build:
+	rm -rf build dist *.egg-info
+	python -m build
+
+release: build
+	git add -A
+	git diff --cached --quiet || git commit -m "Release v$(TAG)"
+	git tag v$(TAG)
+	git push origin v$(TAG)
