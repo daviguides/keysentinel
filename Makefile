@@ -63,3 +63,5 @@ release: build
 	git diff --cached --quiet || git commit -m "Release v$(TAG)"
 	git tag v$(TAG)
 	git push origin v$(TAG)
+	git push origin main
+	@echo "Release v$(TAG) created and pushed."
