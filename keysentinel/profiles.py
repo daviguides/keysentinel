@@ -156,6 +156,42 @@ TOKEN_PROFILES = {
         "description": "Hugging Face API Token",
         "fields": ["hf_token"],
     },
+    "gemini": {
+        "description": "Google Gemini API Key (Google AI Studio)",
+        "fields": ["gemini_api_key"],
+    },
+    "anthropic": {
+        "description": "Anthropic Claude API Key",
+        "fields": ["anthropic_api_key"],
+    },
+    "cohere": {
+        "description": "Cohere API Key",
+        "fields": ["cohere_api_key"],
+    },
+    "mistral": {
+        "description": "Mistral API Key",
+        "fields": ["mistral_api_key"],
+    },
+    "perplexity": {
+        "description": "Perplexity API Key",
+        "fields": ["perplexity_api_key"],
+    },
+    "togetherai": {
+        "description": "Together AI API Key",
+        "fields": ["together_api_key"],
+    },
+    "ai21": {
+        "description": "AI21 Studio API Key",
+        "fields": ["ai21_api_key"],
+    },
+    "deepseek": {
+        "description": "DeepSeek API Key",
+        "fields": ["deepseek_api_key"],
+    },
+    "groq": {
+        "description": "Groq API Key",
+        "fields": ["groq_api_key"],
+    },
 }
 
 # Path to load custom profiles from user environment.
