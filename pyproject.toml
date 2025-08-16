@@ -1,6 +1,6 @@
 [project]
 name = "keysentinel"
-version = "0.2.6"
+version = "0.2.8"
 description = "Secure token management library for CLI tools, using two-layer encryption with local key and 1Password vault integration."
 authors = [{ name = "Davi Guides", email = "davi.guides@gmail.com" }]
 readme = "README.md"
