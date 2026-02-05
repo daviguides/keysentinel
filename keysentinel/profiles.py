@@ -192,6 +192,10 @@ TOKEN_PROFILES = {
         "description": "Groq API Key",
         "fields": ["groq_api_key"],
     },
+    "tailscale": {
+        "description": "Tailscale Auth Key",
+        "fields": ["tailscale_authkey"],
+    },
 }
 
 # Path to load custom profiles from user environment.
