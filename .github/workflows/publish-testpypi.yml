@@ -3,7 +3,7 @@ name: Publish Python 🐍 distribution to TestPyPI
 on:
   push:
     tags:
-      - "v*.*.*-test"  # Example: v1.0.0-test
+      - "v*.*.*-test"
 
 permissions:
   id-token: write
