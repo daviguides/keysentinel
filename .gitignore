@@ -1,172 +1,177 @@
-# Byte-compiled / optimized / DLL files
+# ─── Python ───────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
+*.egg-info/
+*.egg
 dist/
-downloads/
+build/
+wheels/
+*.whl
+sdist/
+.venv/
+venv/
+env/
+.env
+.env.*
+pip-log.txt
+pip-delete-this-directory.txt
+.Python
+develop-eggs/
 eggs/
-.eggs/
 lib/
 lib64/
 parts/
-sdist/
 var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+.installed.cfg
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
+# ─── Testing & Coverage ──────────────────────────────────────────────
 .hypothesis/
 .pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.tox/
+.nox/
+nosetests.xml
+pytest-results/
 
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
+# ─── Linting & Type Checking ─────────────────────────────────────────
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
+.ruff_cache/
+.pytype/
 .pyre/
 
-o/
+# ─── Rust ─────────────────────────────────────────────────────────────
+target/
+Cargo.lock
+**/*.rs.bk
 
-# OSX
+# ─── Node / Frontend ─────────────────────────────────────────────────
+node_modules/
+.npm
+.yarn/
+.pnp.*
+bower_components/
+jspm_packages/
+web_modules/
+*.tsbuildinfo
+.next/
+.nuxt/
+.output/
+.cache/
+.parcel-cache/
+.turbo/
+.vercel/
+.svelte-kit/
+out/
+storybook-static/
+.astro/
 
+# ─── Bundler Output ──────────────────────────────────────────────────
+dist/
+build/
+*.min.js
+*.min.css
+*.bundle.js
+*.chunk.js
+
+# ─── macOS ────────────────────────────────────────────────────────────
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Icon must end with two \r
-Icon
-
-# Thumbnails
 ._*
-
-# Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+Icon?
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-*.zwc
+# ─── Linux ────────────────────────────────────────────────────────────
+*~
+.fuse_hidden*
+.nfs*
+
+# ─── Windows ──────────────────────────────────────────────────────────
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ─── IDEs & Editors ──────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+.project
+.classpath
+.settings/
+*.code-workspace
+
+# ─── Docker ───────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ─── Databases ────────────────────────────────────────────────────────
+*.sqlite3
+*.db
+*.db-journal
+
+# ─── Logs ─────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ─── Secrets & Credentials ───────────────────────────────────────────
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+*.p12
+credentials.json
+service-account.json
+
+# ─── Terraform / IaC ─────────────────────────────────────────────────
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# ─── Misc ─────────────────────────────────────────────────────────────
+.worktrees/
+*.bak
+*.tmp
+*.temp
+*.orig
+*.patch
+
+# ─── Project-Specific ─────────────────────────────────────────────────
+o/
 config.conf
 uv.lock
-
-# Arquivos e pastas gerados automaticamente
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
-
-# Dependências Ruby
 Gemfile.lock
 vendor/
-
-# Outros arquivos temporários
-.DS_Store
-*.log
 _/
